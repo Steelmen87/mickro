@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import MyComponent, {MoneyType} from "./components/myComponent/MyComponent";
+
+export type filterType = "all" | "Dollars" | "RUBLS"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [money, setMoney] = useState<MoneyType[]>([
+        {banknots: 'Dollars', value: 100, number: ' a1234567890'},
+        {banknots: 'Dollars', value: 50, number: ' z1234567890'},
+        {banknots: 'RUBLS', value: 100, number: ' w1234567890'},
+        {banknots: 'Dollars', value: 100, number: ' e1234567890'},
+        {banknots: 'Dollars', value: 50, number: ' c1234567890'},
+        {banknots: 'RUBLS', value: 100, number: ' r1234567890'},
+        {banknots: 'Dollars', value: 50, number: ' x1234567890'},
+        {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
+    ])
+    const [nameButton, setNameButton] = useState<filterType>("all")
+    let m = money
+    if (nameButton === "all") {
+        m = money
+    } else if (nameButton === "Dollars") {
+        m = money.filter(el => el.banknots === nameButton)
+    } else if (nameButton === "RUBLS") {
+        m = money.filter(el => el.banknots === nameButton)
+    }
+    const onClickHandler = (name: filterType) => {
+        setNameButton(name)
+    }
+    return (
+        <>
+            <MyComponent callback={onClickHandler} money={m}/>
+        </>
+    );
 }
 
 export default App;
+
+
