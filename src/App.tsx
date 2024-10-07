@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
-import MyComponent, {MoneyType} from "./components/myComponent/MyComponent";
-import {OffOn} from "./components/offOn/OffOn";
+import {MoneyType} from "./components/myComponent/MyComponent";
+import {Input} from "./components/input/Input";
+import {Button} from "./components/button/Button";
 
 export type filterType = "all" | "Dollars" | "RUBLS"
 
 function App() {
-
+    const [title, setTitle] = useState("")
     const [money, setMoney] = useState<MoneyType[]>([
         {banknots: 'Dollars', value: 100, number: ' a1234567890'},
         {banknots: 'Dollars', value: 50, number: ' z1234567890'},
@@ -17,6 +18,7 @@ function App() {
         {banknots: 'Dollars', value: 50, number: ' x1234567890'},
         {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
     ])
+
     const [nameButton, setNameButton] = useState<filterType>("all")
     let m = money
     if (nameButton === "all") {
@@ -29,10 +31,32 @@ function App() {
     const onClickHandler = (name: filterType) => {
         setNameButton(name)
     }
+
+    const [messages, setMessage] = useState([
+        {message: "message 1",},
+        {message: "message 2",},
+        {message: "message 3",},
+    ])
+    const callBack = (value: string) => {
+        setMessage([{message: value}, ...messages])
+    }
+    const callBackMassage = (value: string) => {
+        setMessage([{message: value}, ...messages])
+        setTitle("")
+    }
     return (
         <>
             {/* <MyComponent callback={onClickHandler} money={m}/>*/}
-            <OffOn/>
+            {/*  <OffOn/>*/}
+            {/*<FullInput cb={callBack}/>*/}
+            <Input value={title} callBackChange={setTitle}/>
+            <Button
+                name={"+"}
+                callBack={() => callBackMassage(title)}/>
+            <ul>
+                {messages.map(el => <li>{el.message}</li>)}
+            </ul>
+
         </>
     );
 }
