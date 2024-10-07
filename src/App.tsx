@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import MyComponent, {MoneyType} from "./components/myComponent/MyComponent";
+import {OffOn} from "./components/offOn/OffOn";
 
 export type filterType = "all" | "Dollars" | "RUBLS"
 
@@ -30,7 +31,8 @@ function App() {
     }
     return (
         <>
-            <MyComponent callback={onClickHandler} money={m}/>
+            {/* <MyComponent callback={onClickHandler} money={m}/>*/}
+            <OffOn/>
         </>
     );
 }

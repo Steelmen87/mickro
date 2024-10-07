@@ -1,0 +1,30 @@
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.myButton {
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid;
+    text-align: center;
+
+
+}
+
+.red {
+    background-color: #fd0303;
+}
+.green {
+    background-color: #41fd03;
+}
+.lamp{
+    width: 50px;
+    margin-left: 20px;
+    border: 1px solid;
+    border-radius: 20px;
+
+    text-align: center;
+    padding: 22px;
+}
